@@ -5,7 +5,7 @@ In this exercise, you will learn how to use React's state to store input values 
 # Task 1
 
 - In the code provided, you will see several constant variables (`firstName`, `lastName`, `age`, etc.) that are used to store the input values from the user.
-- Replace these constant variables with state values using the useState hook. For example, replace `const [firstName, setFirstName] = useState("");` with `const [firstName, setFirstName] = useState("");`.
+- Replace these constant variables with state values using the useState hook. For example, replace `const firstName = "John"` with `const [firstName, setFirstName] = useState("");`.
 - Repeat this process for all the other input fields, such as `lastName`, `age`, `email`, etc....
 
 # Task 2
