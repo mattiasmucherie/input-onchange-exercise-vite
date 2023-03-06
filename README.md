@@ -27,30 +27,54 @@ In this exercise, you will learn how to use React's state to store input values 
 
 # Task 4
 
-- Create one state called person that contains all the values like following
-
-```json
+```js
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "age": "26",
-  "city": "Stockholm",
-  "country": "Sweden",
-  "study": "Javascript developer",
-  "company": "Acme"
+  firstName: "John",
+  lastName: "Doe",
+  age: "26",
+  city: "Stockholm",
+  country: "Sweden",
+  study: "Javascript developer",
+  company: "Acme"
 }
 ```
 
-- Create a handleChange that takes in two arguments. First a key for our person object and a value for that key
-- Us the handleChange method for all input onChange
-- In the function handleChange figure out how to update just the value for the given key of our person state object
-- Update the person state value with the new value
+- In this task, you will create a single state object that contains all the input values, rather than having separate state values for each input field.
+- Define a new state value called `person` using the `useState` hook, with an initial value set to an empty object `{}`.
+- For each input field, update the `value` prop to be the corresponding value from the `person` state object, for example: `value={person.firstName}`.
+- Create a new function called `handleChange` that takes in two arguments: a `key` and a `value`.
+- In the `handleChange` function, update the `person` state object by creating a new object with the updated `key` and `value`, and using the `setPerson` function to update the state. For example: `setPerson({...person, [key]: value})`.
+- For each input field, update the `handleChange` prop to call the `handleChange` function with the appropriate `key` and `event.target.value`.
+- Once you've made these changes, test the application to ensure that the input fields still work as expected and that the `person` state object is being updated correctly.
 
-Hint:
-
-- Can we make a copy of the state person and then use state[key] = value?
-- Can we make a new copy with Object.assign()?
+```js
+<InputField
+  value={person.firstName}
+  handleChange={(e) => handleChange("firstName", e.target.value)}
+  inputType="text"
+/>
+```
 
 # Task 5
 
-- Let's change the input for firstName and lastName to a `<select>` input. You should only be able to select from a list of names
+- In this task, you will replace the text input fields for `firstName` and `lastName` with a `<select>` input that allows the user to choose from a list of predefined names.
+
+- Define two arrays of names, one for first names and one for last names.
+
+  For example:
+
+  ```javascript
+  const firstNames = ["John", "Jane", "Bob"];
+  const lastNames = ["Doe", "Smith", "Johnson"];
+  ```
+
+- Create two new state values called `selectedFirstName` and `selectedLastName` using the `useState` hook, with initial values set to the first item in each array.
+
+  For example:
+
+  ```javascript
+  const [selectedFirstName, setSelectedFirstName] = useState(firstNames[0]);
+  const [selectedLastName, setSelectedLastName] = useState(lastNames[0]);
+  ```
+
+- Figure it out from here :)
