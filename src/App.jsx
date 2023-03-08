@@ -3,55 +3,39 @@ import { useState } from "react";
 import { MyCustomInput } from "./MyCustomInput";
 
 function App() {
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setLastName] = useState("Doe");
-  const [age, setAge] = useState("26");
-  const [city, setCity] = useState("Sockholm");
-  const [country, setCountry] = useState("Sweden");
-  const [study, setStudy] = useState("JS dev");
-  const [company, setCompany] = useState("Brights");
+  const [person, setPerson] = useState({
+    firstName: "John",
+    lastName: "Doe",
+    age: "26",
+    city: "Stockholm",
+    country: "Sweden",
+    study: "Javascript developer",
+    company: "Acme",
+  });
+
+  const handleChange = (key, value) => {
+    setPerson({ ...person, [key]: value });
+  };
+
+  const elements = Object.keys(person).map((el) => {
+    return (
+      <MyCustomInput
+        value={person[el]}
+        handleChange={(event) => handleChange(el, event.target.value)}
+        inputType={el !== "age" ? "text" : "number"}
+        key={el}
+      />
+    );
+  });
 
   return (
     <div>
       <p>
-        Hello, my name is {firstName} {lastName}. I am {age} years old. I live
-        in the {city} of {country}. I'm studying to be a {study} at {company}
+        Hello, my name is {person.firstName} {person.lastName}. I am{" "}
+        {person.age} years old. I live in the {person.city} of {person.country}.
+        I'm studying to be a {person.study} at {person.company}
       </p>
-      <MyCustomInput
-        value={firstName}
-        handleChange={(event) => setFirstName(event.target.value)}
-        inputType="text"
-      />
-      <MyCustomInput
-        value={lastName}
-        handleChange={(event) => setLastName(event.target.value)}
-        inputType="text"
-      />
-      <MyCustomInput
-        value={age}
-        handleChange={(event) => setAge(event.target.value)}
-        inputType="number"
-      />
-      <MyCustomInput
-        value={city}
-        handleChange={(event) => setCity(event.target.value)}
-        inputType="text"
-      />
-      <MyCustomInput
-        value={country}
-        handleChange={(event) => setCountry(event.target.value)}
-        inputType="text"
-      />
-      <MyCustomInput
-        value={study}
-        handleChange={(event) => setStudy(event.target.value)}
-        inputType="text"
-      />
-      <MyCustomInput
-        value={company}
-        handleChange={(event) => setCompany(event.target.value)}
-        inputType="text"
-      />
+      {elements}
     </div>
   );
 }
